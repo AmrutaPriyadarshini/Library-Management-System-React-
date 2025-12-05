@@ -1,0 +1,29 @@
+.hero {
+  color: rgb(50, 184, 50);
+  padding: 60px 0;
+  text-align: center;
+  background-image: url('/assets/Hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero h1 {
+  font-size: 2.1rem;
+  color: rgb(50, 184, 50);
+  font-style: italic;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+.hero h1 {
+    font-size: 1.8rem;
+  }
+}
