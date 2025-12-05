@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Student {
+  StudentID   Int          @id @default(autoincrement())
+  StudentName String       @db.VarChar(100)
+  MobileNo    BigInt?
+  RegdNo      String       @db.VarChar(50)
+  Branch      String       @db.VarChar(100)
+  BookIssued  BookIssued[]
+}
+
+model Books {
+  BookID        Int          @id @default(autoincrement())
+  Title         String       @db.VarChar(100)
+  Author        String?      @db.VarChar(100)
+  ISBN          BigInt?
+  Publication   String?      @db.VarChar(100)
+  Subject       String?      @db.VarChar(100)
+  OriginalStock Int?
+  CurrentStock  Int?
+  BookIssued    BookIssued[]
+}
+
+model BookIssued {
+  IssueID     Int       @id @default(autoincrement())
+  IssueDate   DateTime? @db.Date
+  ReturnDate  DateTime? @db.Date
+  IssueStatus Boolean?
+  BookID      Int
+  StudentID   Int
+  Books       Books     @relation(fields: [BookID], references: [BookID], onDelete: Cascade, onUpdate: NoAction, map: "fk_book")
+  Student     Student   @relation(fields: [StudentID], references: [StudentID], onDelete: Cascade, onUpdate: NoAction, map: "fk_student")
+}
